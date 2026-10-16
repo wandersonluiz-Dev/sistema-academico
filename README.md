@@ -24,7 +24,6 @@ Desenvolver um sistema acadêmico simples, organizado em camadas e com persistê
 
 - **Python 3.10+** — linguagem de programação.
 - **SQLite** — banco de dados relacional.
-- **unittest** — testes automatizados.
 - **Git e GitHub** — versionamento e hospedagem do código-fonte.
 
 O projeto utiliza recursos da biblioteca padrão do Python, sem necessidade de instalar dependências externas.
