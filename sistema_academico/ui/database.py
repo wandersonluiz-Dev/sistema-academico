@@ -1,7 +1,6 @@
 import sqlite3
 from pathlib import Path
 
-# O arquivo do banco fica na raiz do projeto, independentemente da pasta atual.
 CAMINHO_BANCO = Path(__file__).resolve().parent.parent / "sistema_academico.db"
 
 
