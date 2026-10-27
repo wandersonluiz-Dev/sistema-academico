@@ -1,0 +1,17 @@
+# Python
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.venv/
+venv/
+*.egg-info/
+
+# Banco de dados local (cada máquina gera o seu)
+*.db
+*.sqlite3
+
+# IDEs / SO
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
