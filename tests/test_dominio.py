@@ -3,6 +3,8 @@ import unittest
 
 from sistema_academico.dominio.curso import Curso, Disciplina
 from sistema_academico.dominio.excecoes import ErroValidacao
+from sistema_academico.dominio.matricula import Matricula
+from sistema_academico.dominio.avaliacao import MediaAritmetica
 from sistema_academico.dominio.pessoa import Aluno, Pessoa, Professor
 from sistema_academico.dominio.turma import Turma
 
@@ -72,6 +74,49 @@ class TestCursoDisciplinaTurma(unittest.TestCase):
         self.assertFalse(turma.tem_vaga(2))
         with self.assertRaises(ErroValidacao):
             Turma(1, 1, "2026.2", 0)
+
+
+class TestMatricula(unittest.TestCase):
+    def test_lancar_notas_e_media(self):
+        m = Matricula(1, 1)
+        m.lancar_nota(6.0)
+        m.lancar_nota(8.0)
+        self.assertEqual(m.media(MediaAritmetica()), 7.0)
+
+    def test_sem_notas_media_none(self):
+        self.assertIsNone(Matricula(1, 1).media(MediaAritmetica()))
+
+    def test_nota_invalida_nao_e_guardada(self):
+        m = Matricula(1, 1)
+        with self.assertRaises(ErroValidacao):
+            m.lancar_nota(11)
+        self.assertEqual(len(m.notas), 0)
+
+    def test_notas_nao_podem_ser_alteradas_por_fora(self):
+        m = Matricula(1, 1)
+        m.lancar_nota(5)
+        self.assertIsInstance(m.notas, tuple)
+
+    def test_faltas_e_frequencia(self):
+        m = Matricula(1, 1)
+        m.registrar_faltas(20, carga_horaria=80)
+        self.assertAlmostEqual(m.frequencia(80), 0.75)
+
+    def test_faltas_acima_da_carga(self):
+        m = Matricula(1, 1)
+        with self.assertRaises(ErroValidacao):
+            m.registrar_faltas(81, carga_horaria=80)
+
+    def test_faltas_quantidade_invalida(self):
+        with self.assertRaises(ErroValidacao):
+            Matricula(1, 1).registrar_faltas(0, 80)
+
+    def test_cancelar_e_reativar(self):
+        m = Matricula(1, 1)
+        m.cancelar()
+        self.assertFalse(m.ativa)
+        m.reativar()
+        self.assertTrue(m.ativa)
 
 
 if __name__ == "__main__":
