@@ -133,7 +133,13 @@ class CLI:
         self._out(f"Aluno atualizado: {aluno.nome} <{aluno.email}>")
 
     def _listar_alunos(self) -> None:
-        for a in self._s.pessoas.listar_alunos():
+        alunos = self._s.pessoas.listar_alunos()
+
+        if not alunos:
+            self._out("Nenhum aluno cadastrado.")
+            return
+
+        for a in alunos:
             self._out(f"[{a.id}] {a.descricao()} <{a.email}> - curso {a.curso_id}")
 
     def _cadastrar_professor(self) -> None:
