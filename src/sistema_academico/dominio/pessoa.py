@@ -30,6 +30,8 @@ class Pessoa(ABC):
 
     @id.setter
     def id(self, valor: int) -> None:
+        if not isinstance(valor, int) or valor <= 0:
+            raise ErroValidacao("O ID deve ser um número inteiro positivo.")
         self._id = valor
 
     @property
