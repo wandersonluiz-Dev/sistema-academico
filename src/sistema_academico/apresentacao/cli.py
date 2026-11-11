@@ -159,7 +159,7 @@ class CLI:
     def _criar_turma(self) -> None:
         turma = self._s.turmas.criar(
             self._ler_int("ID da disciplina"), self._ler_int("ID do professor"),
-            self._ler("Semestre (ex.: 2026.2)"), self._ler_int("Vagas"))
+            self._ler("Semestre (ex.: 2027.1)"), self._ler_int("Vagas"))
         self._out(f"Turma criada (id {turma.id}).")
 
     def _listar_turmas(self) -> None:
