@@ -128,8 +128,12 @@ class CLI:
 
     def _editar_aluno(self) -> None:
         aluno_id = self._ler_int("ID do aluno")
-        aluno = self._s.pessoas.editar_aluno(
-            aluno_id, self._ler("Novo nome (Enter mantém)"), self._ler("Novo e-mail (Enter mantém)"))
+        nome = self._ler("Novo nome (Enter mantém)")
+        email = self._ler("Novo e-mail (Enter mantém)")
+        if not nome and not email:
+            self._out("Nada foi alterado.")
+            return
+        aluno = self._s.pessoas.editar_aluno(aluno_id, nome, email)
         self._out(f"Aluno atualizado: {aluno.nome} <{aluno.email}>")
 
     def _listar_alunos(self) -> None:
