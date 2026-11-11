@@ -32,6 +32,3 @@
 | RNF07 | `tests/test_cli.py`. |
 | RNF08 | Execução da suíte `unittest`; resultado da cópia analisada: 66 testes aprovados. |
 
-## Limitação
-
-O pacote ZIP não inclui relatório de cobertura de código nem ferramenta de cobertura. Portanto, não se declara percentual de cobertura.
