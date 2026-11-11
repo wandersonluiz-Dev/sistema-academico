@@ -46,6 +46,7 @@ class Matricula:
 
     def frequencia(self, carga_horaria: int) -> float:
         """Fração de presença (1.0 = 100%)."""
+        if carga_horaria <= 0: raise ErroValidacao("Carga horária inválida.")
         return max(0.0, (carga_horaria - self._faltas) / carga_horaria)
 
     def cancelar(self) -> None:
